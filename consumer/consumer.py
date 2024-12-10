@@ -14,7 +14,6 @@ from script.utils import load_environment_variables
 
 warnings.simplefilter("ignore", MissingPivotFunction)
 
-# Initialize findspark and load environment variables
 path_to_utils = Path(__file__).parent.parent
 sys.path.insert(0, str(path_to_utils))
 sys.path.append("/app")
@@ -63,7 +62,6 @@ if __name__ == "__main__":
         StructField("date_time", StringType(), True)
     ])
 
-    # Parse JSON data and select columns
     stockDataframe = inputStream.select(from_json(col("data"), stock_price_schema).alias("stock_price"))
     expandedDf = stockDataframe.select("stock_price.*")
     influxdb_writer = InfluxDBWriter('primary', 'stock-price-v1')
@@ -72,11 +70,11 @@ if __name__ == "__main__":
 
     def process_batch(batch_df, batch_id):
         print(f"Processing batch {batch_id} with {batch_df.count()} records")
-        batch_df.show(5)  # Show the first 5 records in the batch
+        batch_df.show(5)  
 
         for row in batch_df.collect():
             stock_price = row["stock_price"]
-            timestamp = stock_price["date_time"]  # Already in correct format
+            timestamp = stock_price["date_time"]  
             tags = {"iso": stock_price["iso"], "name": stock_price["name"]}
             fields = {
                 "open": stock_price['open'],
@@ -86,8 +84,6 @@ if __name__ == "__main__":
                 "current_price": stock_price['current_price']
             }
             influxdb_writer.process(timestamp, tags, fields)
-
-            # Convert Row to a dictionary
             row_dict = row["stock_price"]
             json_string = json.dumps(row_dict)
             print(json_string)

@@ -32,6 +32,3 @@ def default(args):
 
     return results
 
-# data = default('BTC,ETH,ETHFI,DOGE,ZETA,BNB,SHIB,SOL,TON,WIF,OKB,PEPE,RUNE,AVA,INJ,SUN')
-# for d in data:
-#     print(d)
