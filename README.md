@@ -47,5 +47,11 @@ this is current price with real-time accuracy approximation
 ![image](https://github.com/user-attachments/assets/a43cf1a1-7a08-4b40-b523-b21292a569c1)
 
 ## 9. I modified a LSTM model to predict crypto price through data crawled and technical indicators 
+Here are the indicators i used in the model
+![image](https://github.com/user-attachments/assets/a417ff44-844b-48f3-b2bb-d1c069af804e)
 
+And the results i got with the model 
+![image](https://github.com/user-attachments/assets/4724885b-74d3-4b63-8376-6f248866750b)
 
+Model scores : 
+![image](https://github.com/user-attachments/assets/e5610368-3c95-4b36-b8e7-c921a733d685)
